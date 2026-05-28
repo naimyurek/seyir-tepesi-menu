@@ -1,0 +1,25 @@
+# Seyir Tepesi menü botu — Cloudflare Worker yapılandırması
+name = "seyir-menu-bot"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Onay bekleyen değişiklikleri tutan KV deposu.
+# Oluştur:  wrangler kv namespace create PENDING
+# Çıkan id'yi aşağıya yapıştır:
+kv_namespaces = [
+  { binding = "PENDING", id = "BURAYA_KV_ID_YAZ" }
+]
+
+[vars]
+# Menü dosyasının bulunduğu repo (owner/repo)
+GITHUB_REPO = "naimyurek/seyir-tepesi-menu"
+# Botu kullanabilecek Telegram kullanıcı ID'leri (virgülle ayır): "111111111,222222222"
+ALLOWED_IDS = "BURAYA_TELEGRAM_ID_YAZ"
+# Ücretsiz Gemini modeli
+GEMINI_MODEL = "gemini-1.5-flash-latest"
+
+# ── Secret'lar (DOSYAYA YAZMA — komutla eklenir) ──
+#   wrangler secret put TELEGRAM_TOKEN     # BotFather'dan
+#   wrangler secret put GEMINI_API_KEY     # aistudio.google.com
+#   wrangler secret put GITHUB_TOKEN       # fine-grained PAT (Contents: R/W)
+#   wrangler secret put WEBHOOK_SECRET     # rastgele bir kelime (webhook doğrulaması)
