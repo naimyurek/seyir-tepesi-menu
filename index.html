@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Seyir Tepesi · Çay Molası</title>
+<meta name="description" content="Seyir Tepesi Çay Molası — İnceğiz Kanyonu manzarasında çay, pide, tost ve köfte. Menü, fiyatlar ve alerjen bilgisi.">
+<meta name="theme-color" content="#F4EEE2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Seyir Tepesi · Çay Molası">
+<meta property="og:description" content="İnceğiz Kanyonu manzarasında bir bardak çay. Menümüz, fiyatlar ve alerjen rehberi.">
+<meta property="og:image" content="https://naimyurek.github.io/seyir-tepesi-menu/assets/hero.jpg">
+<meta property="og:url" content="https://naimyurek.github.io/seyir-tepesi-menu/">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F4EEE2'/%3E%3Cpath d='M4 20 L12 9 L18 17 L22 12 L28 21' fill='none' stroke='%237C5A43' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#F4EEE2; --card:#FBF7EE; --ink:#2A2118; --mute:#9C9183;
+    --accent:#7C5A43; --accent-soft:#E9DCC9; --sage:#6E7F5E;
+    --line:rgba(42,33,24,0.10); --hdr-h:132px;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:"Manrope",-apple-system,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased; color:var(--ink);
+    min-height:100vh;
+    background:
+      radial-gradient(1100px 600px at 50% -10%, #F2EADA 0%, transparent 70%),
+      radial-gradient(800px 500px at 80% 110%, #DDD3BE 0%, transparent 70%),
+      #E9E2D2;
+    background-attachment:fixed;
+  }
+  a{ color:inherit; }
+
+  /* ── Phone-width column (real responsive site, no fake device frame) ── */
+  .frame{
+    max-width:440px; margin:0 auto; min-height:100dvh;
+    background:var(--bg);
+    box-shadow:0 0 0 1px var(--line), 0 30px 80px rgba(0,0,0,.10);
+  }
+  @media (max-width:480px){ .frame{ box-shadow:none; } }
+
+  /* ── Header ── */
+  .hdr{
+    position:sticky; top:0; z-index:30; background:var(--bg);
+    padding:calc(env(safe-area-inset-top,0px) + 16px) 20px 12px;
+    border-bottom:.5px solid transparent;
+    transition:background .25s ease, border-color .25s ease;
+  }
+  .hdr.scrolled{
+    background:rgba(244,238,226,.93);
+    backdrop-filter:blur(14px) saturate(160%); -webkit-backdrop-filter:blur(14px) saturate(160%);
+    border-bottom:.5px solid var(--line);
+  }
+  .hdr-top{ display:flex; align-items:center; gap:12px; }
+  .brand-box{
+    width:40px; height:40px; border-radius:12px; flex-shrink:0;
+    background:var(--accent-soft); color:var(--accent);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .brand-txt{ flex:1; min-width:0; }
+  .brand-name{ font-family:"DM Serif Display",Georgia,serif; font-size:19px; line-height:1.1; letter-spacing:-.01em; }
+  .brand-sub{ font:500 10.5px/1.2 inherit; color:var(--mute); margin-top:2px; letter-spacing:.14em; text-transform:uppercase; }
+  .status{ display:flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font:600 11px/1 inherit; white-space:nowrap; }
+  .status.open{ background:rgba(110,127,94,.13); color:var(--sage); }
+  .status.closed{ background:rgba(156,145,131,.16); color:var(--mute); }
+  .status .dot{ width:7px; height:7px; border-radius:50%; }
+  .status.open .dot{ background:var(--sage); animation:pulse 2.4s ease-in-out infinite; }
+  .status.closed .dot{ background:var(--mute); }
+  @keyframes pulse{ 0%,100%{ box-shadow:0 0 0 3px rgba(110,127,94,.15);} 50%{ box-shadow:0 0 0 6px rgba(110,127,94,.06);} }
+  .hdr-langs{ display:flex; justify-content:flex-end; margin-top:10px; }
+  .lang-switch{ display:inline-flex; align-items:center; padding:2px; border-radius:999px; background:rgba(42,33,24,.05); border:.5px solid var(--line); }
+  .lang{ appearance:none; border:0; cursor:pointer; padding:4px 8px; border-radius:999px; background:transparent; color:var(--ink); font:700 10px/1 inherit; letter-spacing:.08em; transition:background .15s ease, color .15s ease; }
+  .lang.on{ background:var(--ink); color:var(--bg); }
+
+  /* ── Hero (real canyon photo, graceful fallback) ── */
+  .hero{ position:relative; height:230px; margin:14px 20px 18px; border-radius:16px; overflow:hidden; border:.5px solid var(--line); background:var(--accent-soft); }
+  .hero-ph{ position:absolute; inset:0; background:repeating-linear-gradient(135deg, rgba(124,90,67,.15) 0 14px, rgba(124,90,67,.07) 14px 28px); }
+  .hero-ph svg{ position:absolute; inset:0; width:100%; height:100%; opacity:.5; }
+  .hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 44%; }
+  .hero-scrim{ position:absolute; inset:0; background:linear-gradient(to top, rgba(20,12,6,.55) 0%, rgba(20,12,6,.10) 42%, rgba(20,12,6,.18) 100%); }
+  .hero-tag{ position:absolute; left:14px; top:12px; font:500 9.5px/1 ui-monospace,"SF Mono",monospace; letter-spacing:.16em; text-transform:uppercase; color:#fff; opacity:.9; text-shadow:0 1px 8px rgba(0,0,0,.5); }
+  .hero-title{ position:absolute; left:14px; right:14px; bottom:13px; font-family:"DM Serif Display",Georgia,serif; font-size:23px; line-height:1.05; letter-spacing:-.015em; color:#fff; text-shadow:0 1px 14px rgba(0,0,0,.5); }
+
+  /* ── Search ── */
+  .search-wrap{ padding:0 20px 4px; }
+  .search{ display:flex; align-items:center; gap:8px; background:var(--card); border:.5px solid var(--line); border-radius:12px; padding:9px 12px; }
+  .search svg{ flex-shrink:0; }
+  .search input{ flex:1; min-width:0; border:0; outline:0; background:transparent; color:var(--ink); font:400 13.5px/1.2 inherit; }
+  .search input::placeholder{ color:var(--mute); }
+  .search .clear{ appearance:none; border:0; background:transparent; color:var(--mute); cursor:pointer; padding:2px; display:none; align-items:center; }
+  .search.has-q .clear{ display:flex; }
+
+  /* ── Category pills ── */
+  .cats{
+    position:sticky; top:var(--hdr-h); z-index:25;
+    background:rgba(244,238,226,.95);
+    backdrop-filter:blur(12px) saturate(160%); -webkit-backdrop-filter:blur(12px) saturate(160%);
+    padding:10px 0 12px; border-bottom:.5px solid var(--line);
+  }
+  .cats-scroll{ display:flex; gap:8px; overflow-x:auto; padding:0 20px; scrollbar-width:none; -ms-overflow-style:none; }
+  .cats-scroll::-webkit-scrollbar{ display:none; }
+  .pill{ appearance:none; border:.5px solid var(--line); background:transparent; color:var(--ink); padding:8px 14px; border-radius:999px; font:500 13px/1 inherit; letter-spacing:-.005em; white-space:nowrap; cursor:pointer; flex-shrink:0; transition:background .2s ease, color .2s ease, border-color .2s ease; }
+  .pill.on{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+
+  /* ── Menu ── */
+  .menu{ padding-bottom:12px; }
+  .empty{ padding:40px 20px; text-align:center; color:var(--mute); font-size:13px; }
+  .cat-head{ padding:20px 20px 6px; }
+  .cat-sub{ font:600 10.5px/1 inherit; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); }
+  .cat-name{ margin-top:4px; font-family:"DM Serif Display",Georgia,serif; font-size:26px; line-height:1.05; letter-spacing:-.015em; }
+  .cat-body{ padding:0 20px; }
+
+  .size-head{ display:grid; grid-template-columns:auto 1fr 56px 56px 22px; align-items:center; gap:8px; padding:4px 0 6px; border-bottom:.5px solid var(--line); }
+  .size-head .sh{ font:600 9.5px/1 inherit; letter-spacing:.16em; text-transform:uppercase; color:var(--mute); text-align:right; }
+
+  .mi{ padding:14px 0; border-bottom:.5px solid var(--line); }
+  .mi-row{ display:grid; grid-template-columns:auto 1fr auto auto; align-items:center; gap:8px; }
+  .mi.has-sizes .mi-row{ grid-template-columns:auto 1fr 56px 56px auto; }
+  .mi-name{ display:inline-flex; align-items:center; gap:6px; min-width:0; }
+  .mi-name .nm{ font:500 15px/1.2 inherit; letter-spacing:-.005em; white-space:nowrap; }
+  .allers{ display:inline-flex; gap:3px; }
+  .aller{ display:inline-flex; align-items:center; justify-content:center; width:17px; height:17px; border-radius:50%; background:rgba(124,90,67,.10); color:var(--accent); font:700 9px/1 ui-monospace,"SF Mono",monospace; flex-shrink:0; }
+  .leader{ align-self:center; width:100%; min-width:16px; height:0; border-bottom:1.5px dotted var(--mute); opacity:.5; }
+  .price{ font:600 14px/1 inherit; color:var(--ink); font-variant-numeric:tabular-nums; letter-spacing:-.01em; white-space:nowrap; text-align:right; }
+  .price .cur{ font-weight:500; color:var(--mute); }
+  .price.none{ font:italic 11px/1 inherit; color:var(--mute); text-align:right; }
+  .ask{ font:italic 10.5px/1 inherit; color:var(--mute); white-space:nowrap; letter-spacing:.02em; text-align:right; }
+  .fav{ appearance:none; border:0; background:transparent; width:22px; height:22px; margin-left:4px; display:flex; align-items:center; justify-content:center; color:rgba(156,145,131,.6); cursor:pointer; transition:transform .15s ease, color .15s ease; }
+  .fav.on{ color:var(--accent); transform:scale(1.1); }
+  .note{ margin-top:4px; font:400 12px/1.45 inherit; color:var(--mute); padding-right:26px; }
+
+  /* ── Footer ── */
+  .ftr{ padding:24px 20px 36px; }
+  .ftr-rows{ border-top:.5px solid var(--line); padding-top:20px; display:flex; flex-direction:column; gap:10px; font-size:12px; }
+  .ftr-row{ display:flex; align-items:flex-start; gap:10px; }
+  .ftr-row .ic{ color:var(--accent); flex-shrink:0; display:flex; }
+  .ftr-row.center .ic{ align-items:center; }
+  .ftr-row .mute{ color:var(--mute); }
+  .ftr-row a{ text-decoration:none; }
+  .ftr-row a:hover{ color:var(--accent); }
+  .legend{ margin-top:22px; padding:14px 14px 12px; background:var(--card); border:.5px solid var(--line); border-radius:12px; }
+  .legend-title{ font:600 10px/1 inherit; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+  .legend-grid{ margin-top:10px; display:grid; grid-template-columns:1fr 1fr; row-gap:8px; column-gap:12px; }
+  .leg{ display:flex; align-items:center; gap:8px; font-size:11.5px; }
+  .thanks{ margin-top:22px; text-align:center; font-family:"DM Serif Display",Georgia,serif; font-size:13px; color:var(--mute); letter-spacing:-.005em; }
+
+  /* ── Printable QR poster (also a "share" card on screen) ── */
+  .poster{ max-width:360px; margin:26px auto 60px; }
+  .poster-inner{ background:#FBF7EE; border:1px solid var(--line); border-radius:18px; padding:28px 26px 22px; text-align:center; box-shadow:0 18px 50px rgba(0,0,0,.10); }
+  .poster-mark{ color:var(--accent); display:inline-flex; }
+  .poster-name{ margin-top:8px; font-family:"DM Serif Display",Georgia,serif; font-size:28px; line-height:1; letter-spacing:-.01em; }
+  .poster-sub{ margin-top:6px; font:600 9.5px/1.4 inherit; letter-spacing:.18em; text-transform:uppercase; color:var(--mute); }
+  .poster-rule{ height:0; border-bottom:1.5px dotted var(--mute); opacity:.45; margin:16px 30px; }
+  .poster-lead{ font-family:"DM Serif Display",Georgia,serif; font-size:19px; line-height:1.15; }
+  .poster-lead .en{ display:block; font:500 11px/1.4 "Manrope",sans-serif; color:var(--mute); margin-top:3px; }
+  .qr-box{ display:inline-block; margin:14px auto 6px; padding:12px; background:#fff; border:.5px solid var(--line); border-radius:12px; }
+  .qr-box svg{ display:block; width:190px; height:190px; }
+  .poster-scan{ font:600 10px/1.4 inherit; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); margin-top:6px; }
+  .poster-url{ margin-top:8px; font:600 12.5px/1.3 ui-monospace,"SF Mono",monospace; color:var(--accent); word-break:break-all; }
+  .poster-foot{ margin-top:14px; font-family:"DM Serif Display",Georgia,serif; font-size:13px; color:var(--mute); }
+  .poster-actions{ display:flex; gap:8px; justify-content:center; margin-top:18px; }
+  .btn{ appearance:none; cursor:pointer; font:600 12.5px/1 "Manrope",sans-serif; padding:10px 16px; border-radius:999px; border:.5px solid var(--line); transition:transform .12s ease, opacity .15s ease; }
+  .btn:active{ transform:scale(.97); }
+  .btn-primary{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .btn-ghost{ background:transparent; color:var(--ink); }
+
+  /* ── Print: isolate the poster into a clean table card ── */
+  @media print{
+    @page{ margin:12mm; }
+    html,body{ background:#fff !important; }
+    .frame{ display:none !important; }
+    .no-print{ display:none !important; }
+    .poster{ max-width:96mm !important; margin:0 auto !important; }
+    .poster-inner{ box-shadow:none !important; border:1px solid #d8cfbd !important; border-radius:14px; }
+    .qr-box{ box-shadow:none !important; }
+    .qr-box svg{ width:54mm !important; height:54mm !important; }
+    *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  }
+</style>
+</head>
+<body>
+
+<main class="frame">
+  <!-- Header -->
+  <header class="hdr" id="hdr">
+    <div class="hdr-top">
+      <div class="brand-box" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+          <path d="M3 19 L11 8 L17 16 L21 11 L29 21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 24 H29" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 3" opacity="0.7"/>
+          <path d="M3 27.5 H29" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 3" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="brand-txt">
+        <div class="brand-name">Seyir Tepesi</div>
+        <div class="brand-sub" data-i18n="brand_sub">Çay Molası · İnceğiz Kanyonu</div>
+      </div>
+      <div class="status closed" id="statusPill">
+        <span class="dot"></span><span id="statusText">Kapalı</span>
+      </div>
+    </div>
+    <div class="hdr-langs">
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="Dil / Language"></div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-ph" aria-hidden="true">
+      <svg viewBox="0 0 320 130" preserveAspectRatio="none">
+        <path d="M0 95 L60 55 L100 80 L155 35 L210 70 L260 50 L320 85 L320 130 L0 130 Z" fill="#7C5A43" opacity="0.45"/>
+        <path d="M0 110 L50 85 L110 100 L170 80 L230 95 L290 78 L320 95 L320 130 L0 130 Z" fill="#7C5A43" opacity="0.7"/>
+      </svg>
+    </div>
+    <img class="hero-img" src="assets/hero.jpg" alt="İnceğiz Kanyonu manzarasında bir bardak Türk çayı" onerror="this.style.display='none'">
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-tag">İnceğiz Kanyonu · Denizli</div>
+    <div class="hero-title"><span data-i18n="hero_l1">Bir bardak çayla</span><br><span data-i18n="hero_l2">kanyonun üzerinde.</span></div>
+  </section>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <div class="search" id="search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9C9183" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="searchInput" type="search" autocomplete="off" placeholder="menüde ara…" aria-label="Menüde ara">
+      <button class="clear" id="searchClear" aria-label="Aramayı temizle">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <nav class="cats" aria-label="Kategoriler">
+    <div class="cats-scroll" id="catScroll"></div>
+  </nav>
+
+  <!-- Menu list -->
+  <div class="menu" id="menu"></div>
+
+  <!-- Footer -->
+  <footer class="ftr">
+    <div class="ftr-rows">
+      <div class="ftr-row">
+        <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div><a href="https://www.google.com/maps/search/?api=1&amp;query=Seyir%20Tepesi%20%C3%87ay%20Molas%C4%B1%20%C4%B0nce%C4%9Fiz" target="_blank" rel="noopener">İnceğiz, 20570<br><span class="mute">Kale / Denizli</span></a></div>
+      </div>
+      <div class="ftr-row center">
+        <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11L8.09 10.91a16 16 0 0 0 6 6l2-1.27a2 2 0 0 1 2.11-.45c1 .35 2 .59 3.06.72A2 2 0 0 1 22 16.92z"/></svg></span>
+        <div><a href="tel:+905413565077">0541 356 50 77</a></div>
+      </div>
+      <div class="ftr-row center">
+        <span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 4 13c0-5 4-9 11-9 0 7-4 11-9 11"/><path d="M2 22c0-4 4-7 9-7"/></svg></span>
+        <div><span data-i18n="hours">Her gün 08:00 – 20:00</span> <span class="mute">· <span data-i18n="hours_note">hava şartlarına göre</span></span></div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-title" data-i18n="allergens_title">Alerjen rehberi</div>
+      <div class="legend-grid" id="legendGrid"></div>
+    </div>
+
+    <div class="thanks" data-i18n="thanks">— afiyet olsun —</div>
+  </footer>
+</main>
+
+<!-- QR poster — visible on the page and isolated for printing -->
+<section class="poster" id="poster" aria-label="Menü QR kartı">
+  <div class="poster-inner">
+    <div class="poster-mark" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+        <path d="M3 19 L11 8 L17 16 L21 11 L29 21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 24 H29" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 3" opacity="0.7"/>
+        <path d="M3 27.5 H29" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="1 3" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="poster-name">Seyir Tepesi</div>
+    <div class="poster-sub">Çay Molası · İnceğiz Kanyonu</div>
+
+    <div class="poster-rule"></div>
+
+    <div class="poster-lead">Menümüz telefonunuzda<span class="en">Our menu on your phone</span></div>
+
+    <div class="qr-box">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" shape-rendering="crispEdges" role="img" aria-label="Menü QR kodu"><path d="M4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM14 4h1v1h-1zM17 4h1v1h-1zM20 4h1v1h-1zM21 4h1v1h-1zM22 4h1v1h-1zM23 4h1v1h-1zM24 4h1v1h-1zM25 4h1v1h-1zM26 4h1v1h-1zM27 4h1v1h-1zM30 4h1v1h-1zM31 4h1v1h-1zM32 4h1v1h-1zM33 4h1v1h-1zM34 4h1v1h-1zM35 4h1v1h-1zM36 4h1v1h-1zM4 5h1v1h-1zM10 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM17 5h1v1h-1zM20 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM27 5h1v1h-1zM28 5h1v1h-1zM30 5h1v1h-1zM36 5h1v1h-1zM4 6h1v1h-1zM6 6h1v1h-1zM7 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM15 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM21 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM30 6h1v1h-1zM32 6h1v1h-1zM33 6h1v1h-1zM34 6h1v1h-1zM36 6h1v1h-1zM4 7h1v1h-1zM6 7h1v1h-1zM7 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM12 7h1v1h-1zM14 7h1v1h-1zM18 7h1v1h-1zM19 7h1v1h-1zM20 7h1v1h-1zM24 7h1v1h-1zM27 7h1v1h-1zM30 7h1v1h-1zM32 7h1v1h-1zM33 7h1v1h-1zM34 7h1v1h-1zM36 7h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM24 8h1v1h-1zM28 8h1v1h-1zM30 8h1v1h-1zM32 8h1v1h-1zM33 8h1v1h-1zM34 8h1v1h-1zM36 8h1v1h-1zM4 9h1v1h-1zM10 9h1v1h-1zM14 9h1v1h-1zM15 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM23 9h1v1h-1zM24 9h1v1h-1zM30 9h1v1h-1zM36 9h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM20 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM31 10h1v1h-1zM32 10h1v1h-1zM33 10h1v1h-1zM34 10h1v1h-1zM35 10h1v1h-1zM36 10h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM15 11h1v1h-1zM16 11h1v1h-1zM21 11h1v1h-1zM24 11h1v1h-1zM26 11h1v1h-1zM28 11h1v1h-1zM4 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM18 12h1v1h-1zM21 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM25 12h1v1h-1zM27 12h1v1h-1zM28 12h1v1h-1zM30 12h1v1h-1zM33 12h1v1h-1zM35 12h1v1h-1zM36 12h1v1h-1zM4 13h1v1h-1zM6 13h1v1h-1zM8 13h1v1h-1zM9 13h1v1h-1zM11 13h1v1h-1zM13 13h1v1h-1zM15 13h1v1h-1zM18 13h1v1h-1zM20 13h1v1h-1zM23 13h1v1h-1zM24 13h1v1h-1zM26 13h1v1h-1zM27 13h1v1h-1zM30 13h1v1h-1zM31 13h1v1h-1zM33 13h1v1h-1zM34 13h1v1h-1zM36 13h1v1h-1zM6 14h1v1h-1zM7 14h1v1h-1zM10 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM18 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM25 14h1v1h-1zM26 14h1v1h-1zM27 14h1v1h-1zM28 14h1v1h-1zM30 14h1v1h-1zM31 14h1v1h-1zM32 14h1v1h-1zM33 14h1v1h-1zM36 14h1v1h-1zM4 15h1v1h-1zM5 15h1v1h-1zM8 15h1v1h-1zM9 15h1v1h-1zM11 15h1v1h-1zM12 15h1v1h-1zM13 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM28 15h1v1h-1zM30 15h1v1h-1zM31 15h1v1h-1zM33 15h1v1h-1zM35 15h1v1h-1zM36 15h1v1h-1zM6 16h1v1h-1zM7 16h1v1h-1zM10 16h1v1h-1zM11 16h1v1h-1zM12 16h1v1h-1zM13 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM25 16h1v1h-1zM27 16h1v1h-1zM28 16h1v1h-1zM29 16h1v1h-1zM32 16h1v1h-1zM33 16h1v1h-1zM9 17h1v1h-1zM11 17h1v1h-1zM14 17h1v1h-1zM15 17h1v1h-1zM16 17h1v1h-1zM20 17h1v1h-1zM21 17h1v1h-1zM22 17h1v1h-1zM28 17h1v1h-1zM31 17h1v1h-1zM34 17h1v1h-1zM35 17h1v1h-1zM5 18h1v1h-1zM6 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM10 18h1v1h-1zM13 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM20 18h1v1h-1zM22 18h1v1h-1zM25 18h1v1h-1zM26 18h1v1h-1zM28 18h1v1h-1zM30 18h1v1h-1zM31 18h1v1h-1zM32 18h1v1h-1zM33 18h1v1h-1zM4 19h1v1h-1zM7 19h1v1h-1zM11 19h1v1h-1zM12 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM18 19h1v1h-1zM20 19h1v1h-1zM23 19h1v1h-1zM24 19h1v1h-1zM25 19h1v1h-1zM29 19h1v1h-1zM30 19h1v1h-1zM33 19h1v1h-1zM34 19h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM24 20h1v1h-1zM25 20h1v1h-1zM26 20h1v1h-1zM27 20h1v1h-1zM29 20h1v1h-1zM30 20h1v1h-1zM32 20h1v1h-1zM34 20h1v1h-1zM5 21h1v1h-1zM6 21h1v1h-1zM7 21h1v1h-1zM13 21h1v1h-1zM14 21h1v1h-1zM17 21h1v1h-1zM19 21h1v1h-1zM20 21h1v1h-1zM21 21h1v1h-1zM24 21h1v1h-1zM25 21h1v1h-1zM26 21h1v1h-1zM27 21h1v1h-1zM28 21h1v1h-1zM29 21h1v1h-1zM30 21h1v1h-1zM32 21h1v1h-1zM33 21h1v1h-1zM36 21h1v1h-1zM4 22h1v1h-1zM7 22h1v1h-1zM8 22h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM24 22h1v1h-1zM26 22h1v1h-1zM30 22h1v1h-1zM31 22h1v1h-1zM32 22h1v1h-1zM34 22h1v1h-1zM35 22h1v1h-1zM4 23h1v1h-1zM5 23h1v1h-1zM6 23h1v1h-1zM9 23h1v1h-1zM12 23h1v1h-1zM15 23h1v1h-1zM16 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM23 23h1v1h-1zM25 23h1v1h-1zM27 23h1v1h-1zM29 23h1v1h-1zM30 23h1v1h-1zM32 23h1v1h-1zM35 23h1v1h-1zM36 23h1v1h-1zM4 24h1v1h-1zM7 24h1v1h-1zM9 24h1v1h-1zM10 24h1v1h-1zM12 24h1v1h-1zM15 24h1v1h-1zM18 24h1v1h-1zM19 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM27 24h1v1h-1zM29 24h1v1h-1zM33 24h1v1h-1zM34 24h1v1h-1zM35 24h1v1h-1zM36 24h1v1h-1zM4 25h1v1h-1zM6 25h1v1h-1zM7 25h1v1h-1zM8 25h1v1h-1zM12 25h1v1h-1zM13 25h1v1h-1zM14 25h1v1h-1zM16 25h1v1h-1zM18 25h1v1h-1zM19 25h1v1h-1zM22 25h1v1h-1zM25 25h1v1h-1zM27 25h1v1h-1zM30 25h1v1h-1zM33 25h1v1h-1zM34 25h1v1h-1zM36 25h1v1h-1zM6 26h1v1h-1zM7 26h1v1h-1zM9 26h1v1h-1zM10 26h1v1h-1zM14 26h1v1h-1zM20 26h1v1h-1zM26 26h1v1h-1zM27 26h1v1h-1zM28 26h1v1h-1zM29 26h1v1h-1zM33 26h1v1h-1zM35 26h1v1h-1zM36 26h1v1h-1zM5 27h1v1h-1zM7 27h1v1h-1zM8 27h1v1h-1zM9 27h1v1h-1zM11 27h1v1h-1zM13 27h1v1h-1zM15 27h1v1h-1zM16 27h1v1h-1zM17 27h1v1h-1zM18 27h1v1h-1zM20 27h1v1h-1zM23 27h1v1h-1zM28 27h1v1h-1zM29 27h1v1h-1zM30 27h1v1h-1zM32 27h1v1h-1zM33 27h1v1h-1zM35 27h1v1h-1zM36 27h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM7 28h1v1h-1zM8 28h1v1h-1zM10 28h1v1h-1zM11 28h1v1h-1zM12 28h1v1h-1zM16 28h1v1h-1zM17 28h1v1h-1zM18 28h1v1h-1zM19 28h1v1h-1zM21 28h1v1h-1zM22 28h1v1h-1zM26 28h1v1h-1zM27 28h1v1h-1zM28 28h1v1h-1zM29 28h1v1h-1zM30 28h1v1h-1zM31 28h1v1h-1zM32 28h1v1h-1zM35 28h1v1h-1zM36 28h1v1h-1zM12 29h1v1h-1zM13 29h1v1h-1zM17 29h1v1h-1zM19 29h1v1h-1zM20 29h1v1h-1zM21 29h1v1h-1zM23 29h1v1h-1zM27 29h1v1h-1zM28 29h1v1h-1zM32 29h1v1h-1zM33 29h1v1h-1zM4 30h1v1h-1zM5 30h1v1h-1zM6 30h1v1h-1zM7 30h1v1h-1zM8 30h1v1h-1zM9 30h1v1h-1zM10 30h1v1h-1zM12 30h1v1h-1zM13 30h1v1h-1zM14 30h1v1h-1zM15 30h1v1h-1zM18 30h1v1h-1zM23 30h1v1h-1zM26 30h1v1h-1zM27 30h1v1h-1zM28 30h1v1h-1zM30 30h1v1h-1zM32 30h1v1h-1zM4 31h1v1h-1zM10 31h1v1h-1zM12 31h1v1h-1zM14 31h1v1h-1zM15 31h1v1h-1zM16 31h1v1h-1zM18 31h1v1h-1zM19 31h1v1h-1zM23 31h1v1h-1zM24 31h1v1h-1zM25 31h1v1h-1zM26 31h1v1h-1zM27 31h1v1h-1zM28 31h1v1h-1zM32 31h1v1h-1zM33 31h1v1h-1zM34 31h1v1h-1zM35 31h1v1h-1zM4 32h1v1h-1zM6 32h1v1h-1zM7 32h1v1h-1zM8 32h1v1h-1zM10 32h1v1h-1zM13 32h1v1h-1zM15 32h1v1h-1zM19 32h1v1h-1zM21 32h1v1h-1zM23 32h1v1h-1zM24 32h1v1h-1zM27 32h1v1h-1zM28 32h1v1h-1zM29 32h1v1h-1zM30 32h1v1h-1zM31 32h1v1h-1zM32 32h1v1h-1zM34 32h1v1h-1zM4 33h1v1h-1zM6 33h1v1h-1zM7 33h1v1h-1zM8 33h1v1h-1zM10 33h1v1h-1zM12 33h1v1h-1zM14 33h1v1h-1zM15 33h1v1h-1zM17 33h1v1h-1zM18 33h1v1h-1zM21 33h1v1h-1zM22 33h1v1h-1zM23 33h1v1h-1zM24 33h1v1h-1zM25 33h1v1h-1zM27 33h1v1h-1zM31 33h1v1h-1zM33 33h1v1h-1zM35 33h1v1h-1zM36 33h1v1h-1zM4 34h1v1h-1zM6 34h1v1h-1zM7 34h1v1h-1zM8 34h1v1h-1zM10 34h1v1h-1zM12 34h1v1h-1zM15 34h1v1h-1zM21 34h1v1h-1zM23 34h1v1h-1zM28 34h1v1h-1zM30 34h1v1h-1zM31 34h1v1h-1zM33 34h1v1h-1zM34 34h1v1h-1zM4 35h1v1h-1zM10 35h1v1h-1zM13 35h1v1h-1zM15 35h1v1h-1zM16 35h1v1h-1zM17 35h1v1h-1zM18 35h1v1h-1zM19 35h1v1h-1zM20 35h1v1h-1zM21 35h1v1h-1zM23 35h1v1h-1zM26 35h1v1h-1zM27 35h1v1h-1zM28 35h1v1h-1zM29 35h1v1h-1zM31 35h1v1h-1zM32 35h1v1h-1zM36 35h1v1h-1zM4 36h1v1h-1zM5 36h1v1h-1zM6 36h1v1h-1zM7 36h1v1h-1zM8 36h1v1h-1zM9 36h1v1h-1zM10 36h1v1h-1zM12 36h1v1h-1zM13 36h1v1h-1zM14 36h1v1h-1zM15 36h1v1h-1zM19 36h1v1h-1zM20 36h1v1h-1zM21 36h1v1h-1zM22 36h1v1h-1zM25 36h1v1h-1zM26 36h1v1h-1zM27 36h1v1h-1zM32 36h1v1h-1zM33 36h1v1h-1zM34 36h1v1h-1z" fill="#2A2118"/></svg>
+    </div>
+
+    <div class="poster-scan">Okutun · Scan · Scannen · Сканируйте</div>
+    <div class="poster-url">naimyurek.github.io/seyir-tepesi-menu</div>
+
+    <div class="poster-foot">— afiyet olsun —</div>
+
+    <div class="poster-actions no-print">
+      <button class="btn btn-primary" id="printBtn">Yazdır</button>
+      <button class="btn btn-ghost" id="copyBtn">Bağlantıyı kopyala</button>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ── Seyir Tepesi · Çay Molası — recreated from the Claude Design handoff
+   (kanyon-ay-molas / "Seyir Tepesi Menu.html"). Self-contained, no build step,
+   no runtime CDN deps — loads fast on weak canyon signal. ── */
+(function(){
+  "use strict";
+
+  var CANONICAL_URL = "https://naimyurek.github.io/seyir-tepesi-menu/";
+
+  var ALLERGENS = {
+    G: { tr:'Gluten', en:'Gluten', de:'Gluten', ru:'Глютен' },
+    L: { tr:'Süt / laktoz', en:'Dairy', de:'Milch', ru:'Молоко' },
+    Y: { tr:'Yumurta', en:'Egg', de:'Ei', ru:'Яйцо' },
+    F: { tr:'Fındık / ceviz', en:'Nuts', de:'Nüsse', ru:'Орехи' },
+    S: { tr:'Susam', en:'Sesame', de:'Sesam', ru:'Кунжут' },
+    K: { tr:'Kafein', en:'Caffeine', de:'Koffein', ru:'Кофеин' }
+  };
+
+  var MENU_DATA = [
+    { id:'pide', name:{tr:'Pide',en:'Pide',de:'Pide',ru:'Пиде'},
+      sub:{tr:'Fırından',en:'From the oven',de:'Aus dem Ofen',ru:'Из печи'},
+      sizes:['tek','1.5'],
+      items:[
+        { id:'kiymali-pide', name:'Kıymalı Pide', price:350, priceL:525, allergens:['G'],
+          note:{tr:'El açması hamur · dana kıyma · soğan · biber', en:'Hand-rolled dough with seasoned minced beef, onion & pepper', de:'Handgerollter Teig mit Rinderhack, Zwiebel & Paprika', ru:'Тесто ручной работы с говяжьим фаршем, луком и перцем'} },
+        { id:'kasarli-pide', name:'Kaşarlı Pide', price:350, priceL:525, allergens:['G','L'],
+          note:{tr:'Eski kaşar peyniri · taze maydanoz', en:'Aged kaşar cheese with fresh parsley', de:'Gereifter Kaşar-Käse mit frischer Petersilie', ru:'Выдержанный сыр кашар с петрушкой'} },
+        { id:'kiymali-kasarli', name:'Kıymalı Kaşarlı', price:400, priceL:600, allergens:['G','L'],
+          note:{tr:'Dana kıyma + eski kaşar', en:'Minced beef + aged kaşar', de:'Rinderhack + gereifter Kaşar', ru:'Фарш + выдержанный кашар'} },
+        { id:'kiymali-yumurtali', name:'Kıymalı Yumurtalı', price:400, priceL:600, allergens:['G','Y'],
+          note:{tr:'Dana kıyma + tava yumurtası', en:'Minced beef + pan egg', de:'Rinderhack + Spiegelei', ru:'Фарш + жареное яйцо'} },
+        { id:'kasarli-yumurtali', name:'Kaşarlı Yumurtalı', price:400, priceL:600, allergens:['G','L','Y'],
+          note:{tr:'Eski kaşar + tava yumurtası', en:'Aged kaşar + pan egg', de:'Gereifter Kaşar + Spiegelei', ru:'Выдержанный кашар + жареное яйцо'} }
+      ]
+    },
+    { id:'sicak', name:{tr:'Tost & Et',en:'Toast & Grill',de:'Toast & Grill',ru:'Тосты и мясо'},
+      sub:{tr:'Anında hazır',en:'Ready in minutes',de:'In wenigen Minuten',ru:'Готовится быстро'},
+      items:[
+        { id:'sade-tost', name:'Sade Tost', price:200, allergens:['G','L'],
+          note:{tr:'Kızarmış ekmek arasında eski kaşar', en:'Grilled bread with aged kaşar cheese', de:'Geröstetes Brot mit Kaşar-Käse', ru:'Хрустящий хлеб с выдержанным кашаром'} },
+        { id:'sucuklu-kasarli-tost', name:'Sucuklu Kaşarlı Tost', price:250, allergens:['G','L'],
+          note:{tr:'Dana sucuk + eski kaşar', en:'Turkish sucuk sausage + aged kaşar', de:'Türkische Sucuk + gereifter Kaşar', ru:'Колбаса суджук + кашар'} },
+        { id:'kofte-porsiyon', name:'Köfte Porsiyon', price:500, allergens:['G'],
+          note:{tr:'Izgara dana köfte · ekmek · soğan · biber', en:'Grilled beef meatballs with bread, onion & pepper', de:'Gegrillte Rinderfrikadellen mit Brot, Zwiebel & Paprika', ru:'Котлеты на гриле с хлебом, луком и перцем'} }
+      ]
+    },
+    { id:'icecek', name:{tr:'İçecek',en:'Drinks',de:'Getränke',ru:'Напитки'},
+      sub:{tr:'Sıcak & soğuk',en:'Hot & cold',de:'Heiß & kalt',ru:'Горячее и холодное'},
+      items:[
+        { id:'cay', name:'Çay', price:25, allergens:['K'],
+          note:{tr:'Demli siyah çay · ince belli bardakta', en:'Steeped black tea in a classic tulip glass', de:'Gebrühter Schwarztee im Tulpenglas', ru:'Чёрный чай в традиционном стакане'} },
+        { id:'turk-kahvesi', name:'Türk Kahvesi', price:50, allergens:['K'],
+          note:{tr:'Sade · az · orta · şekerli · Türk lokumu eşliğinde', en:'Plain / lightly / medium / sweet — served with Turkish delight', de:'Ohne / wenig / mittel / süß — mit Lokum serviert', ru:'Без / мало / средне / сладкий — с лукумом'} },
+        { id:'neskafe', name:'Neskafe', price:50, allergens:['K','L'],
+          note:{tr:'Sütlü ya da sade hazır kahve', en:'Instant coffee, with or without milk', de:'Instant-Kaffee, mit oder ohne Milch', ru:'Растворимый кофе с молоком или без'} },
+        { id:'su', name:'Su', price:25, allergens:[],
+          note:{tr:'Soğuk içme suyu, 0.5 lt', en:'Cold drinking water, 0.5 L', de:'Kaltes Trinkwasser, 0,5 L', ru:'Холодная вода, 0,5 л'} },
+        { id:'kola-teneke', name:'Teneke Kola 330ml', price:100, allergens:['K'],
+          note:{tr:'Kola, 330 ml kutu', en:'Cola, 330 ml can', de:'Cola, 330 ml Dose', ru:'Кола, банка 330 мл'} },
+        { id:'fanta', name:'Fanta 330ml', price:100, allergens:[],
+          note:{tr:'Portakallı gazlı içecek, 330 ml kutu', en:'Orange soda, 330 ml can', de:'Orangenlimonade, 330 ml Dose', ru:'Апельсиновая газировка, 330 мл'} },
+        { id:'kola-sise', name:'Şişe Kola 200ml', price:50, allergens:['K'],
+          note:{tr:'Kola, 200 ml cam şişe', en:'Cola, 200 ml glass bottle', de:'Cola, 200 ml Glasflasche', ru:'Кола в стеклянной бутылке, 200 мл'} },
+        { id:'zafer-gazoz', name:'Zafer Gazoz', price:50, allergens:[],
+          note:{tr:'Yöresel limonlu gazoz · cam şişe', en:'Local lemon-flavoured soda, glass bottle', de:'Lokale Zitronen-Limonade, Glasflasche', ru:'Местная лимонная газировка'} },
+        { id:'soda', name:'Sade & Meyveli Soda', price:50, allergens:[],
+          note:{tr:'Sade veya meyveli maden suyu', en:'Plain or fruit-flavoured sparkling mineral water', de:'Mineralwasser, pur oder mit Frucht', ru:'Минералка обычная или с фруктовым вкусом'} },
+        { id:'ayran', name:'Ayran', price:50, allergens:['L'],
+          note:{tr:'Köpüklü ev tipi ayran', en:'Frothy traditional yoghurt drink', de:'Aufgeschlagenes Joghurtgetränk nach Hausart', ru:'Пенный домашний айран'} }
+      ]
+    }
+  ];
+
+  var I18N = {
+    brand_sub:{tr:'Çay Molası · İnceğiz Kanyonu',en:'Tea House · İnceğiz Canyon',de:'Teehaus · İnceğiz-Schlucht',ru:'Чайхана · каньон Инджегиз'},
+    open:{tr:'Açık',en:'Open',de:'Geöffnet',ru:'Открыто'},
+    closed:{tr:'Kapalı',en:'Closed',de:'Geschlossen',ru:'Закрыто'},
+    hero_l1:{tr:'Bir bardak çayla',en:'With a glass of tea',de:'Bei einem Glas Tee',ru:'За чашкой чая'},
+    hero_l2:{tr:'kanyonun üzerinde.',en:'above the canyon.',de:'über der Schlucht.',ru:'над каньоном.'},
+    search:{tr:'menüde ara…',en:'search the menu…',de:'Menü durchsuchen…',ru:'поиск по меню…'},
+    all:{tr:'Tümü',en:'All',de:'Alle',ru:'Всё'},
+    favs:{tr:'Favoriler',en:'Favourites',de:'Favoriten',ru:'Избранное'},
+    no_favs:{tr:'Henüz favori bir lezzet eklemediniz. Kalbe dokunup deneyin.',en:'No favourites yet. Tap a heart to save one.',de:'Noch keine Favoriten. Tippen Sie auf ein Herz, um eines zu speichern.',ru:'Пока нет избранного. Нажмите на сердечко, чтобы добавить.'},
+    no_results:{tr:'Bu kriterlere uyan bir şey bulamadık.',en:'Nothing matches the current filters.',de:'Keine Ergebnisse für diese Filter.',ru:'По вашему запросу ничего не найдено.'},
+    hours:{tr:'Her gün 08:00 – 20:00',en:'Open daily 8 am – 8 pm',de:'Täglich 08:00 – 20:00 Uhr',ru:'Ежедневно с 08:00 до 20:00'},
+    hours_note:{tr:'hava şartlarına göre',en:'subject to weather',de:'wetterabhängig',ru:'в зависимости от погоды'},
+    allergens_title:{tr:'Alerjen rehberi',en:'Allergen guide',de:'Allergen-Übersicht',ru:'Аллергены'},
+    thanks:{tr:'— afiyet olsun —',en:'— enjoy your meal —',de:'— guten Appetit —',ru:'— приятного аппетита —'}
+  };
+
+  var LANGS = [ {id:'tr',label:'TR'}, {id:'en',label:'EN'}, {id:'de',label:'DE'}, {id:'ru',label:'RU'} ];
+
+  // ── helpers ──
+  function L(val, lang){ if(val==null) return ''; if(typeof val==='string') return val; return val[lang]||val.tr||val.en||''; }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function $(sel){ return document.querySelector(sel); }
+
+  // ── state ──
+  var lang = (function(){ try{ var s=localStorage.getItem('stcm-lang'); if(s && LANGS.some(function(l){return l.id===s;})) return s; }catch(e){} return 'tr'; })();
+  var active = 'all';
+  var query = '';
+  var favs = (function(){ try{ return new Set(JSON.parse(localStorage.getItem('stcm-favs')||'[]')); }catch(e){ return new Set(); } })();
+
+  // ── DOM refs ──
+  var hdr = $('#hdr'), statusPill = $('#statusPill'), statusText = $('#statusText');
+  var langSwitch = $('#langSwitch'), catScroll = $('#catScroll'), menu = $('#menu');
+  var legendGrid = $('#legendGrid'), searchBox = $('#search'), searchInput = $('#searchInput'), searchClear = $('#searchClear');
+
+  function setLang(l){ lang = l; try{ localStorage.setItem('stcm-lang', l); }catch(e){} applyLang(); }
+  function persistFavs(){ try{ localStorage.setItem('stcm-favs', JSON.stringify([].concat(Array.from(favs)))); }catch(e){} }
+
+  // ── icons ──
+  function heartSVG(filled){
+    return '<svg width="14" height="14" viewBox="0 0 24 24" fill="'+(filled?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+  }
+  function allerPill(code){
+    var nm = L(ALLERGENS[code], lang);
+    return '<span class="aller" title="'+esc(code+' · '+nm)+'" aria-label="'+esc(nm)+'">'+code+'</span>';
+  }
+  function priceCell(val){
+    if(val==null) return '<div class="price none">—</div>';
+    return '<div class="price">'+val+' <span class="cur">₺</span></div>';
+  }
+
+  // ── render: language switcher ──
+  function renderLangs(){
+    langSwitch.innerHTML = LANGS.map(function(l){
+      return '<button class="lang'+(lang===l.id?' on':'')+'" data-lang="'+l.id+'">'+l.label+'</button>';
+    }).join('');
+  }
+
+  // ── render: category pills ──
+  function buildCats(){
+    var list = [{id:'all',label:L(I18N.all,lang)}];
+    MENU_DATA.forEach(function(c){ list.push({id:c.id,label:L(c.name,lang)}); });
+    list.push({id:'fav',label:L(I18N.favs,lang)+(favs.size?(' · '+favs.size):'')});
+    return list;
+  }
+  function renderCats(){
+    catScroll.innerHTML = buildCats().map(function(c){
+      return '<button class="pill'+(active===c.id?' on':'')+'" data-cat="'+c.id+'">'+esc(c.label)+'</button>';
+    }).join('');
+  }
+
+  // ── render: legend ──
+  function renderLegend(){
+    legendGrid.innerHTML = Object.keys(ALLERGENS).map(function(code){
+      return '<div class="leg">'+allerPill(code)+'<span>'+esc(L(ALLERGENS[code],lang))+'</span></div>';
+    }).join('');
+  }
+
+  // ── render: menu ──
+  function filtered(){
+    var q = query.trim().toLowerCase();
+    return MENU_DATA
+      .filter(function(c){ return active==='all'||active==='fav'||c.id===active; })
+      .map(function(c){
+        var items = c.items.filter(function(it){
+          if(active==='fav' && !favs.has(it.id)) return false;
+          if(q){
+            var name=L(it.name,lang).toLowerCase(), note=L(it.note,lang).toLowerCase();
+            if(name.indexOf(q)<0 && note.indexOf(q)<0) return false;
+          }
+          return true;
+        });
+        return { c:c, items:items };
+      })
+      .filter(function(g){ return g.items.length>0; });
+  }
+
+  function itemHTML(it, hasSizes){
+    var fav = favs.has(it.id);
+    var allers = (it.allergens||[]).map(allerPill).join('');
+    var nameCell = '<div class="mi-name"><span class="nm">'+esc(L(it.name,lang))+'</span>'+(allers?'<span class="allers">'+allers+'</span>':'')+'</div>';
+    var leader = '<div class="leader"></div>';
+    var prices;
+    if(hasSizes){ prices = priceCell(it.price)+priceCell(it.priceL); }
+    else { prices = (it.price!=null) ? priceCell(it.price) : '<div class="ask">fiyat sorunuz</div>'; }
+    var heart = '<button class="fav'+(fav?' on':'')+'" data-fav="'+it.id+'" aria-pressed="'+(fav?'true':'false')+'" aria-label="'+(fav?'Favorilerden çıkar':'Favorilere ekle')+'">'+heartSVG(fav)+'</button>';
+    var note = L(it.note, lang);
+    return '<div class="mi'+(hasSizes?' has-sizes':'')+'">'
+         +   '<div class="mi-row">'+nameCell+leader+prices+heart+'</div>'
+         +   (note?'<div class="note">'+esc(note)+'</div>':'')
+         + '</div>';
+  }
+
+  function sizeHeadHTML(sizes){
+    return '<div class="size-head"><div></div><div></div><div class="sh">'+esc(sizes[0])+'</div><div class="sh">'+esc(sizes[1])+'</div><div></div></div>';
+  }
+
+  function renderMenu(){
+    var groups = filtered();
+    if(groups.length===0){
+      menu.innerHTML = '<div class="empty">'+esc(active==='fav'?L(I18N.no_favs,lang):L(I18N.no_results,lang))+'</div>';
+      return;
+    }
+    menu.innerHTML = groups.map(function(g){
+      var c = g.c, hasSizes = !!(c.sizes && c.sizes.length===2);
+      var head = '<div class="cat-head"><div class="cat-sub">'+esc(L(c.sub,lang))+'</div><div class="cat-name">'+esc(L(c.name,lang))+'</div></div>';
+      var body = (hasSizes?sizeHeadHTML(c.sizes):'') + g.items.map(function(it){ return itemHTML(it, hasSizes); }).join('');
+      return '<section class="cat">'+head+'<div class="cat-body">'+body+'</div></section>';
+    }).join('');
+  }
+
+  // ── open/closed status (08:00–20:00) ──
+  function updateStatus(){
+    var h = new Date().getHours();
+    var open = h>=8 && h<20;
+    statusPill.className = 'status '+(open?'open':'closed');
+    statusText.textContent = L(open?I18N.open:I18N.closed, lang);
+  }
+
+  // ── apply language across static + dynamic UI ──
+  function applyLang(){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(I18N[key]) el.textContent = L(I18N[key], lang);
+    });
+    searchInput.placeholder = L(I18N.search, lang);
+    renderLangs();
+    renderLegend();
+    renderCats();
+    renderMenu();
+    updateStatus();
+  }
+
+  // ── header sticky offset for the category bar ──
+  function setHdrH(){ document.documentElement.style.setProperty('--hdr-h', hdr.offsetHeight + 'px'); }
+
+  // ── events ──
+  langSwitch.addEventListener('click', function(e){
+    var b = e.target.closest('[data-lang]'); if(!b) return; setLang(b.getAttribute('data-lang'));
+  });
+  catScroll.addEventListener('click', function(e){
+    var b = e.target.closest('[data-cat]'); if(!b) return;
+    active = b.getAttribute('data-cat'); renderCats(); renderMenu();
+    var on = catScroll.querySelector('.pill.on'); if(on && on.scrollIntoView) on.scrollIntoView({inline:'center', block:'nearest', behavior:'smooth'});
+  });
+  menu.addEventListener('click', function(e){
+    var b = e.target.closest('[data-fav]'); if(!b) return;
+    var id = b.getAttribute('data-fav');
+    if(favs.has(id)) favs.delete(id); else favs.add(id);
+    persistFavs(); renderCats(); renderMenu();
+  });
+  searchInput.addEventListener('input', function(){
+    query = searchInput.value;
+    searchBox.classList.toggle('has-q', query.length>0);
+    renderMenu();
+  });
+  searchClear.addEventListener('click', function(){
+    query=''; searchInput.value=''; searchBox.classList.remove('has-q'); renderMenu(); searchInput.focus();
+  });
+  window.addEventListener('scroll', function(){ hdr.classList.toggle('scrolled', window.scrollY>6); }, {passive:true});
+  window.addEventListener('resize', setHdrH);
+
+  // poster actions
+  var printBtn = $('#printBtn'), copyBtn = $('#copyBtn');
+  if(printBtn) printBtn.addEventListener('click', function(){ window.print(); });
+  if(copyBtn) copyBtn.addEventListener('click', function(){
+    var done = function(){ var t=copyBtn.textContent; copyBtn.textContent='Kopyalandı ✓'; setTimeout(function(){ copyBtn.textContent=t; },1600); };
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(CANONICAL_URL).then(done, done); }
+    else { done(); }
+  });
+
+  // ── init ──
+  applyLang();
+  setHdrH();
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(setHdrH); }
+  window.addEventListener('load', setHdrH);
+  updateStatus();
+  setInterval(updateStatus, 30000);
+})();
+</script>
+</body>
+</html>

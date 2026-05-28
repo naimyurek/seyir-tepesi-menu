@@ -1,0 +1,4 @@
+# Local dev tooling / editor cruft — not part of the published site
+.claude/
+.DS_Store
+*.log
