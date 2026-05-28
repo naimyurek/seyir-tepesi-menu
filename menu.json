@@ -360,7 +360,8 @@
             "de": "Rüben-Saft, fermentiertes Gurkenwasser",
             "ru": "Сок репы, ферментированная вода от маринованных огурцов",
             "zh": "萝卜汁，发酵的腌黄瓜水"
-          }
+          },
+          "available": false
         }
       ]
     }
