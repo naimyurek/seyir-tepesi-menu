@@ -42,7 +42,7 @@
         { "id": "cay", "name": "Çay", "price": 25, "allergens": ["K"],
           "note": { "tr": "Demli siyah çay · ince belli bardakta", "en": "Steeped black tea in a classic tulip glass", "de": "Gebrühter Schwarztee im Tulpenglas", "ru": "Чёрный чай в традиционном стакане", "zh": "郁金香杯装现泡红茶" } },
         { "id": "turk-kahvesi", "name": "Türk Kahvesi", "price": 50, "allergens": ["K"],
-          "note": { "tr": "Sade · az · orta · şekerli · Türk lokumu eşliğinde", "en": "Plain / lightly / medium / sweet — served with Turkish delight", "de": "Ohne / wenig / mittel / süß — mit Lokum serviert", "ru": "Без / мало / средне / сладкий — с лукумом", "zh": "原味/微甜/中甜/加糖 — 配土耳其软糖" } },
+          "note": { "tr": "Sade · az · orta · şekerli", "en": "Plain / lightly / medium / sweet", "de": "Ohne / wenig / mittel / süß", "ru": "Без / мало / средне / сладкий", "zh": "原味/微甜/中甜/加糖" } },
         { "id": "neskafe", "name": "Neskafe", "price": 50, "allergens": ["K", "L"],
           "note": { "tr": "Sütlü ya da sade hazır kahve", "en": "Instant coffee, with or without milk", "de": "Instant-Kaffee, mit oder ohne Milch", "ru": "Растворимый кофе с молоком или без", "zh": "速溶咖啡，加奶或不加" } },
         { "id": "su", "name": "Su", "price": 25, "allergens": [],
