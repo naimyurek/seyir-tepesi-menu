@@ -3,8 +3,6 @@
 .DS_Store
 *.log
 
-# Cloudflare Worker yerel önbelleği
+# Bot (Cloudflare Worker) tamamen yerelde tutulur — public repoda/Pages'te yer almaz
+bot/
 .wrangler/
-
-# DİKKAT: bot/README.md ve bot/wrangler.toml'a GERÇEK token/secret yazma!
-# Gizli değerler yalnızca `wrangler secret put` ile Cloudflare'de durmalı.
