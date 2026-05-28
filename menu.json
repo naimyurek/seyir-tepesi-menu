@@ -58,7 +58,7 @@
         { "id": "soda", "name": "Sade & Meyveli Soda", "price": 50, "allergens": [],
           "note": { "tr": "Sade veya meyveli maden suyu", "en": "Plain or fruit-flavoured sparkling mineral water", "de": "Mineralwasser, pur oder mit Frucht", "ru": "Минералка обычная или с фруктовым вкусом", "zh": "原味或果味气泡矿泉水" } },
         { "id": "ayran", "name": "Ayran", "price": 50, "allergens": ["L"],
-          "note": { "tr": "Köpüklü ev tipi ayran", "en": "Frothy traditional yoghurt drink", "de": "Aufgeschlagenes Joghurtgetränk nach Hausart", "ru": "Пенный домашний айран", "zh": "传统泡沫酸奶饮品" } }
+          "note": { "tr": "Hazır ayran", "en": "Ready-made ayran (yoghurt drink)", "de": "Fertig-Ayran (Joghurtgetränk)", "ru": "Готовый айран (йогуртовый напиток)", "zh": "现成酸奶饮品（艾兰）" } }
       ]
     }
   ]
