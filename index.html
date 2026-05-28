@@ -166,8 +166,7 @@
   .qr-box{ display:inline-block; margin:14px auto 6px; padding:12px; background:#fff; border:.5px solid var(--line); border-radius:12px; }
   .qr-box svg{ display:block; width:190px; height:190px; }
   .poster-scan{ font:600 10px/1.4 inherit; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); margin-top:6px; }
-  .poster-url{ margin-top:8px; font:600 12.5px/1.3 ui-monospace,"SF Mono",monospace; color:var(--accent); word-break:break-all; }
-  .poster-foot{ margin-top:14px; font-family:"DM Serif Display",Georgia,serif; font-size:13px; color:var(--mute); }
+  .poster-foot{ margin-top:16px; font-family:"DM Serif Display",Georgia,serif; font-size:13px; color:var(--mute); }
   .poster-actions{ display:flex; gap:8px; justify-content:center; margin-top:18px; }
   .btn{ appearance:none; cursor:pointer; font:600 12.5px/1 "Manrope",sans-serif; padding:10px 16px; border-radius:999px; border:.5px solid var(--line); transition:transform .12s ease, opacity .15s ease; }
   .btn:active{ transform:scale(.97); }
@@ -295,7 +294,6 @@
     </div>
 
     <div class="poster-scan">Okutun · Scan · Scannen · Сканируйте</div>
-    <div class="poster-url">naimyurek.github.io/seyir-tepesi-menu</div>
 
     <div class="poster-foot">— afiyet olsun —</div>
 
@@ -344,8 +342,10 @@
     { id:'sicak', name:{tr:'Tost & Et',en:'Toast & Grill',de:'Toast & Grill',ru:'Тосты и мясо'},
       sub:{tr:'Anında hazır',en:'Ready in minutes',de:'In wenigen Minuten',ru:'Готовится быстро'},
       items:[
-        { id:'sade-tost', name:'Sade Tost', price:200, allergens:['G','L'],
-          note:{tr:'Kızarmış ekmek arasında eski kaşar', en:'Grilled bread with aged kaşar cheese', de:'Geröstetes Brot mit Kaşar-Käse', ru:'Хрустящий хлеб с выдержанным кашаром'} },
+        { id:'sucuklu-tost', name:'Sucuklu Tost', price:200, allergens:['G'],
+          note:{tr:'Kızarmış ekmek arasında dana sucuk', en:'Grilled bread with Turkish sucuk sausage', de:'Geröstetes Brot mit türkischer Sucuk', ru:'Хрустящий хлеб с колбасой суджук'} },
+        { id:'kasarli-tost', name:'Kaşarlı Tost', price:200, allergens:['G','L'],
+          note:{tr:'Kızarmış ekmek arasında eski kaşar', en:'Grilled bread with aged kaşar cheese', de:'Geröstetes Brot mit gereiftem Kaşar', ru:'Хрустящий хлеб с выдержанным кашаром'} },
         { id:'sucuklu-kasarli-tost', name:'Sucuklu Kaşarlı Tost', price:250, allergens:['G','L'],
           note:{tr:'Dana sucuk + eski kaşar', en:'Turkish sucuk sausage + aged kaşar', de:'Türkische Sucuk + gereifter Kaşar', ru:'Колбаса суджук + кашар'} },
         { id:'kofte-porsiyon', name:'Köfte Porsiyon', price:500, allergens:['G'],
