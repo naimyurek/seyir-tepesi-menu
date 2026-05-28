@@ -322,62 +322,7 @@
     K: { tr:'Kafein', en:'Caffeine', de:'Koffein', ru:'Кофеин', zh:'咖啡因' }
   };
 
-  var MENU_DATA = [
-    { id:'pide', name:{tr:'Pide',en:'Pide',de:'Pide',ru:'Пиде',zh:'皮德饼'},
-      sub:{tr:'Fırından',en:'From the oven',de:'Aus dem Ofen',ru:'Из печи',zh:'现烤出炉'},
-      sizes:['tek','1.5'],
-      items:[
-        { id:'kiymali-pide', name:'Kıymalı Pide', price:350, priceL:525, allergens:['G'],
-          note:{tr:'El açması hamur · dana kıyma · soğan · biber', en:'Hand-rolled dough with seasoned minced beef, onion & pepper', de:'Handgerollter Teig mit Rinderhack, Zwiebel & Paprika', ru:'Тесто ручной работы с говяжьим фаршем, луком и перцем', zh:'手擀面团 · 牛肉末 · 洋葱 · 青椒'} },
-        { id:'kasarli-pide', name:'Kaşarlı Pide', price:350, priceL:525, allergens:['G','L'],
-          note:{tr:'Eski kaşar peyniri · taze maydanoz', en:'Aged kaşar cheese with fresh parsley', de:'Gereifter Kaşar-Käse mit frischer Petersilie', ru:'Выдержанный сыр кашар с петрушкой', zh:'陈年卡沙尔奶酪 · 新鲜欧芹'} },
-        { id:'kiymali-kasarli', name:'Kıymalı Kaşarlı', price:400, priceL:600, allergens:['G','L'],
-          note:{tr:'Dana kıyma + eski kaşar', en:'Minced beef + aged kaşar', de:'Rinderhack + gereifter Kaşar', ru:'Фарш + выдержанный кашар', zh:'牛肉末 + 陈年卡沙尔奶酪'} },
-        { id:'kiymali-yumurtali', name:'Kıymalı Yumurtalı', price:400, priceL:600, allergens:['G','Y'],
-          note:{tr:'Dana kıyma + tava yumurtası', en:'Minced beef + pan egg', de:'Rinderhack + Spiegelei', ru:'Фарш + жареное яйцо', zh:'牛肉末 + 煎蛋'} },
-        { id:'kasarli-yumurtali', name:'Kaşarlı Yumurtalı', price:400, priceL:600, allergens:['G','L','Y'],
-          note:{tr:'Eski kaşar + tava yumurtası', en:'Aged kaşar + pan egg', de:'Gereifter Kaşar + Spiegelei', ru:'Выдержанный кашар + жареное яйцо', zh:'陈年卡沙尔奶酪 + 煎蛋'} }
-      ]
-    },
-    { id:'sicak', name:{tr:'Tost & Et',en:'Toast & Grill',de:'Toast & Grill',ru:'Тосты и мясо',zh:'吐司和烤肉'},
-      sub:{tr:'Anında hazır',en:'Ready in minutes',de:'In wenigen Minuten',ru:'Готовится быстро',zh:'即点即做'},
-      items:[
-        { id:'sucuklu-tost', name:'Sucuklu Tost', price:200, allergens:['G'],
-          note:{tr:'Kızarmış ekmek arasında dana sucuk', en:'Grilled bread with Turkish sucuk sausage', de:'Geröstetes Brot mit türkischer Sucuk', ru:'Хрустящий хлеб с колбасой суджук', zh:'烤面包夹土耳其苏库克香肠'} },
-        { id:'kasarli-tost', name:'Kaşarlı Tost', price:200, allergens:['G','L'],
-          note:{tr:'Kızarmış ekmek arasında eski kaşar', en:'Grilled bread with aged kaşar cheese', de:'Geröstetes Brot mit gereiftem Kaşar', ru:'Хрустящий хлеб с выдержанным кашаром', zh:'烤面包夹陈年卡沙尔奶酪'} },
-        { id:'sucuklu-kasarli-tost', name:'Sucuklu Kaşarlı Tost', price:250, allergens:['G','L'],
-          note:{tr:'Dana sucuk + eski kaşar', en:'Turkish sucuk sausage + aged kaşar', de:'Türkische Sucuk + gereifter Kaşar', ru:'Колбаса суджук + кашар', zh:'土耳其苏库克香肠 + 陈年卡沙尔奶酪'} },
-        { id:'kofte-porsiyon', name:'Köfte Porsiyon', price:500, allergens:['G'],
-          note:{tr:'Izgara dana köfte · ekmek · soğan · biber', en:'Grilled beef meatballs with bread, onion & pepper', de:'Gegrillte Rinderfrikadellen mit Brot, Zwiebel & Paprika', ru:'Котлеты на гриле с хлебом, луком и перцем', zh:'炭烤牛肉丸 · 面包 · 洋葱 · 青椒'} }
-      ]
-    },
-    { id:'icecek', name:{tr:'İçecek',en:'Drinks',de:'Getränke',ru:'Напитки',zh:'饮品'},
-      sub:{tr:'Sıcak & soğuk',en:'Hot & cold',de:'Heiß & kalt',ru:'Горячее и холодное',zh:'冷饮与热饮'},
-      items:[
-        { id:'cay', name:'Çay', price:25, allergens:['K'],
-          note:{tr:'Demli siyah çay · ince belli bardakta', en:'Steeped black tea in a classic tulip glass', de:'Gebrühter Schwarztee im Tulpenglas', ru:'Чёрный чай в традиционном стакане', zh:'郁金香杯装现泡红茶'} },
-        { id:'turk-kahvesi', name:'Türk Kahvesi', price:50, allergens:['K'],
-          note:{tr:'Sade · az · orta · şekerli · Türk lokumu eşliğinde', en:'Plain / lightly / medium / sweet — served with Turkish delight', de:'Ohne / wenig / mittel / süß — mit Lokum serviert', ru:'Без / мало / средне / сладкий — с лукумом', zh:'原味/微甜/中甜/加糖 — 配土耳其软糖'} },
-        { id:'neskafe', name:'Neskafe', price:50, allergens:['K','L'],
-          note:{tr:'Sütlü ya da sade hazır kahve', en:'Instant coffee, with or without milk', de:'Instant-Kaffee, mit oder ohne Milch', ru:'Растворимый кофе с молоком или без', zh:'速溶咖啡，加奶或不加'} },
-        { id:'su', name:'Su', price:25, allergens:[],
-          note:{tr:'Soğuk içme suyu, 0.5 lt', en:'Cold drinking water, 0.5 L', de:'Kaltes Trinkwasser, 0,5 L', ru:'Холодная вода, 0,5 л', zh:'冰镇饮用水，0.5 升'} },
-        { id:'kola-teneke', name:'Teneke Kola 330ml', price:100, allergens:['K'],
-          note:{tr:'Kola, 330 ml kutu', en:'Cola, 330 ml can', de:'Cola, 330 ml Dose', ru:'Кола, банка 330 мл', zh:'可乐，330 毫升罐装'} },
-        { id:'fanta', name:'Fanta 330ml', price:100, allergens:[],
-          note:{tr:'Portakallı gazlı içecek, 330 ml kutu', en:'Orange soda, 330 ml can', de:'Orangenlimonade, 330 ml Dose', ru:'Апельсиновая газировка, 330 мл', zh:'橙味汽水，330 毫升罐装'} },
-        { id:'kola-sise', name:'Şişe Kola 200ml', price:50, allergens:['K'],
-          note:{tr:'Kola, 200 ml cam şişe', en:'Cola, 200 ml glass bottle', de:'Cola, 200 ml Glasflasche', ru:'Кола в стеклянной бутылке, 200 мл', zh:'可乐，200 毫升玻璃瓶'} },
-        { id:'zafer-gazoz', name:'Zafer Gazoz', price:50, allergens:[],
-          note:{tr:'Yöresel limonlu gazoz · cam şişe', en:'Local lemon-flavoured soda, glass bottle', de:'Lokale Zitronen-Limonade, Glasflasche', ru:'Местная лимонная газировка', zh:'当地柠檬味汽水 · 玻璃瓶'} },
-        { id:'soda', name:'Sade & Meyveli Soda', price:50, allergens:[],
-          note:{tr:'Sade veya meyveli maden suyu', en:'Plain or fruit-flavoured sparkling mineral water', de:'Mineralwasser, pur oder mit Frucht', ru:'Минералка обычная или с фруктовым вкусом', zh:'原味或果味气泡矿泉水'} },
-        { id:'ayran', name:'Ayran', price:50, allergens:['L'],
-          note:{tr:'Köpüklü ev tipi ayran', en:'Frothy traditional yoghurt drink', de:'Aufgeschlagenes Joghurtgetränk nach Hausart', ru:'Пенный домашний айран', zh:'传统泡沫酸奶饮品'} }
-      ]
-    }
-  ];
+  var MENU_DATA = [];
 
   var I18N = {
     brand_sub:{tr:'Çay Molası · İnceğiz Kanyonu',en:'Tea House · İnceğiz Canyon',de:'Teehaus · İnceğiz-Schlucht',ru:'Чайхана · каньон Инджегиз',zh:'茶歇 · İnceğiz 峡谷'},
@@ -463,7 +408,7 @@
     return MENU_DATA
       .filter(function(c){ return active==='all'||active==='fav'||c.id===active; })
       .map(function(c){
-        var items = c.items.filter(function(it){
+        var items = c.items.filter(function(it){ if(it.available === false) return false;
           if(active==='fav' && !favs.has(it.id)) return false;
           if(q){
             var name=L(it.name,lang).toLowerCase(), note=L(it.note,lang).toLowerCase();
@@ -571,13 +516,27 @@
     else { done(); }
   });
 
-  // ── init ──
-  applyLang();
-  setHdrH();
-  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(setHdrH); }
-  window.addEventListener('load', setHdrH);
-  updateStatus();
-  setInterval(updateStatus, 30000);
+  // ── init: menüyü menu.json'dan yükle (Telegram botu bu dosyayı düzenler) ──
+  function boot(data){
+    MENU_DATA = (data && data.categories) ? data.categories : [];
+    applyLang();
+    setHdrH();
+    if(document.fonts && document.fonts.ready){ document.fonts.ready.then(setHdrH); }
+    window.addEventListener('load', setHdrH);
+    updateStatus();
+    setInterval(updateStatus, 30000);
+  }
+  function loadMenu(retry){
+    fetch('menu.json', { cache: 'no-cache' })
+      .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+      .then(boot)
+      .catch(function(err){
+        if(retry>0){ setTimeout(function(){ loadMenu(retry-1); }, 1200); return; }
+        applyLang(); setHdrH(); updateStatus();
+        menu.innerHTML = '<div class="empty">Menü yüklenemedi. Lütfen sayfayı yenileyin.</div>';
+      });
+  }
+  loadMenu(2);
 })();
 </script>
 </body>
