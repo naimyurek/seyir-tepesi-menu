@@ -152,7 +152,9 @@
   .legend-title{ font:600 10px/1 inherit; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
   .legend-grid{ margin-top:10px; display:grid; grid-template-columns:1fr 1fr; row-gap:8px; column-gap:12px; }
   .leg{ display:flex; align-items:center; gap:8px; font-size:11.5px; }
-  .thanks{ margin-top:22px; text-align:center; font-family:"DM Serif Display",Georgia,serif; font-size:13px; color:var(--mute); letter-spacing:-.005em; }
+  .ftr-meta{ margin-top:18px; display:flex; flex-wrap:wrap; justify-content:center; gap:6px; text-align:center; font-size:11px; color:var(--mute); letter-spacing:.01em; }
+  .ftr-meta .dot{ opacity:.6; }
+  .thanks{ margin-top:18px; text-align:center; font-family:"DM Serif Display",Georgia,serif; font-size:13px; color:var(--mute); letter-spacing:-.005em; }
 
   /* ── Printable QR poster (also a "share" card on screen) ── */
   .poster{ max-width:360px; margin:26px auto 60px; }
@@ -268,6 +270,12 @@
       <div class="legend-grid" id="legendGrid"></div>
     </div>
 
+    <div class="ftr-meta">
+      <span><span data-i18n="updated_label">Son fiyat güncelleme tarihi</span>: <span id="updatedDate">02.04.2026</span></span>
+      <span class="dot">·</span>
+      <span data-i18n="vat_note">Fiyatlarımıza KDV dahildir</span>
+    </div>
+
     <div class="thanks" data-i18n="thanks">— afiyet olsun —</div>
   </footer>
 </main>
@@ -338,6 +346,8 @@
     hours:{tr:'Her gün 08:00 – 20:00',en:'Open daily 8 am – 8 pm',de:'Täglich 08:00 – 20:00 Uhr',ru:'Ежедневно с 08:00 до 20:00',zh:'每天 08:00 – 20:00'},
     hours_note:{tr:'hava şartlarına göre',en:'subject to weather',de:'wetterabhängig',ru:'в зависимости от погоды',zh:'视天气而定'},
     allergens_title:{tr:'Alerjen rehberi',en:'Allergen guide',de:'Allergen-Übersicht',ru:'Аллергены',zh:'过敏原指南'},
+    updated_label:{tr:'Son fiyat güncelleme tarihi',en:'Prices last updated',de:'Preise zuletzt aktualisiert',ru:'Цены обновлены',zh:'价格最近更新'},
+    vat_note:{tr:'Fiyatlarımıza KDV dahildir',en:'All prices include VAT',de:'Alle Preise inkl. MwSt.',ru:'Цены включают НДС',zh:'价格均含增值税'},
     thanks:{tr:'— afiyet olsun —',en:'— enjoy your meal —',de:'— guten Appetit —',ru:'— приятного аппетита —',zh:'— 请慢用 —'}
   };
 
@@ -519,6 +529,7 @@
   // ── init: menüyü menu.json'dan yükle (Telegram botu bu dosyayı düzenler) ──
   function boot(data){
     MENU_DATA = (data && data.categories) ? data.categories : [];
+    if(data && data.updated){ var ud = $('#updatedDate'); if(ud) ud.textContent = data.updated; }
     applyLang();
     setHdrH();
     if(document.fonts && document.fonts.ready){ document.fonts.ready.then(setHdrH); }

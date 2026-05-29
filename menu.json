@@ -1,4 +1,5 @@
 {
+  "updated": "02.04.2026",
   "categories": [
     {
       "id": "pide",
@@ -25,7 +26,7 @@
           "id": "kiymali-pide",
           "name": "Kıymalı Pide",
           "price": 350,
-          "priceL": 525,
+          "priceL": 500,
           "allergens": [
             "G"
           ],
@@ -41,7 +42,7 @@
           "id": "kasarli-pide",
           "name": "Kaşarlı Pide",
           "price": 350,
-          "priceL": 525,
+          "priceL": 500,
           "allergens": [
             "G",
             "L"
@@ -105,6 +106,41 @@
             "ru": "Выдержанный кашар + жареное яйцо",
             "zh": "陈年卡沙尔奶酪 + 煎蛋"
           }
+        },
+        {
+          "id": "tahinli-pide",
+          "name": "Tahinli Pide",
+          "price": 500,
+          "priceL": 750,
+          "allergens": [
+            "G",
+            "S"
+          ],
+          "note": {
+            "tr": "El açması hamur · tahin · şeker",
+            "en": "Hand-rolled dough with sweet tahini filling",
+            "de": "Handgerollter Teig mit süßer Tahin-Füllung",
+            "ru": "Тесто ручной работы с тахини и сахаром",
+            "zh": "手擀面团 · 芝麻酱 · 糖"
+          }
+        },
+        {
+          "id": "tahinli-balli-cevizli",
+          "name": "Tahinli Ballı Cevizli",
+          "price": 650,
+          "priceL": 1000,
+          "allergens": [
+            "G",
+            "S",
+            "F"
+          ],
+          "note": {
+            "tr": "Tahin · bal · ceviz içi",
+            "en": "Tahini, honey & walnuts",
+            "de": "Tahin, Honig & Walnüsse",
+            "ru": "Тахини, мёд и грецкий орех",
+            "zh": "芝麻酱 · 蜂蜜 · 核桃"
+          }
         }
       ]
     },
@@ -125,6 +161,23 @@
         "zh": "即点即做"
       },
       "items": [
+        {
+          "id": "kahvalti",
+          "name": "Kahvaltı",
+          "price": 500,
+          "allergens": [
+            "G",
+            "L",
+            "Y"
+          ],
+          "note": {
+            "tr": "Serpme kahvaltı · peynir · zeytin · yumurta · bal-kaymak",
+            "en": "Spread breakfast: cheeses, olives, egg, honey & clotted cream",
+            "de": "Reichhaltiges Frühstück: Käse, Oliven, Ei, Honig & Kaymak",
+            "ru": "Завтрак: сыры, оливки, яйцо, мёд и каймак",
+            "zh": "丰盛早餐 · 奶酪 · 橄榄 · 鸡蛋 · 蜂蜜奶油"
+          }
+        },
         {
           "id": "sucuklu-tost",
           "name": "Sucuklu Tost",
